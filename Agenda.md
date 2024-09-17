@@ -40,7 +40,7 @@
 
 ### Sep 10
 
-- [x] Normalization & ERDs
+- [x] Normalization
   - [x] Demos
     - [x] [ESP 2](https://dmit-1508.github.io/demos/esp/specs/ESP-2-Specs.html)
     - Analyze a form to identify metadata (0NF) and create a list of the metadata
@@ -53,10 +53,28 @@
 
 ### Sep 11
 
-- [ ] Normalization & ERDs
+- [ ] Normalization
   - [ ] Demos
     - [ ] [ESP 3](https://dmit-1508.github.io/demos/esp/specs/ESP-3-Specs.html)
     - List key questions to ask yourself when checking whether you've correctly processed meta-data through 1NF to 3NF.
+
+### Sep 13
+
+- [ ] Normalization
+  - [ ] Finished ESP 3
+
+----
+
+### Sep 17
+
+- [ ] Normalization
+  - [ ] Solutions to [ESP 4](https://dmit-1508.github.io/demos/esp/specs/ESP-4.html) and [ESP 5](https://dmit-1508.github.io/demos/esp/specs/ESP-5.html)
+
+### Sep 18
+
+- [ ] ERDs
+  - [ ] Creating ERDs from Normalization Results
+  - [ ] Merging ERDs
 
 ----
 
