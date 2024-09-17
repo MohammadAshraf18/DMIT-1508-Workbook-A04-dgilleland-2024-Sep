@@ -62,3 +62,43 @@
 **ManifestItem**: OrderNumber(PK|FK1), ShipDate(PK|FK1), ItemID(PK|Fk2), OrderQuantity, ShipQuantity
 
 **Shipment**: OrderNumber(PK|FK), ShipDate(PK), ShipperID, WaybillNumber
+
+```mermaid
+erDiagram
+    o[OrderShipmentRecord] {
+        text OrderNumber PK
+        text CustomerNumber FK
+        text OrderDate
+    }
+    i[InventoryItem] {
+        text ItemID PK
+        text Description
+    }
+    s[Shipment] {
+        text OrderNumber "PK|FK"
+        text ShipDate "PK"
+        text ShipperID
+        text WaybillNumber
+    }
+    m[ManifestItem] {
+        text OrderNumber "PK|FK1"
+        text ShipDate "PK|FK1"
+        text ItemID "PK|FK2"
+        text OrderQuantity
+        text ShipQuantity
+    }
+    c[Customer] {
+        number CustomerNumber PK
+        text FirstName
+        text LastName
+        text Address
+        text City
+        text Province
+        text PostalCode
+        text Phone
+    }
+    c ||--|{ o : "has/for"
+    o ||--|{ s : "made up of/belongs to"
+    s ||--|{ m : "contains/part of"
+    i ||--|{ m : "sent on/identified as"
+```
