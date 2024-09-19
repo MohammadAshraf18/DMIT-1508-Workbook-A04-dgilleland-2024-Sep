@@ -2,7 +2,7 @@
 
 > ***NOTE:** This agenda is copied from the previous term and needs to be adjusted to this semester. Otherwise, the topics are generally in the correct order.*
 
-> These are my notes on what I plan to teach in each [upcoming class](#sep-18). For the timeline of where we are today, see [the current schedule](./README.md#schedule).
+> These are my notes on what I plan to teach in each [upcoming class](#sep-20). For the timeline of where we are today, see [the current schedule](./README.md#schedule).
 >
 > ### *... Warn those who are idle ..., encourage the disheartened, help the weak, be patient with everyone.*
 >
@@ -75,6 +75,15 @@
 - [ ] ERDs
   - [ ] Creating ERDs from Normalization Results
   - [ ] Merging ERDs
+
+### Sep 20
+
+- [ ] Practice/Demo Lab
+  - [ ] Writing in Markdown (sample Normalization)
+  - [ ] ERDs using [Mermaid syntax](https://mermaid.js.org/syntax/entityRelationshipDiagram.html)
+  - [ ] Committing Your Changes
+  - [ ] Submitting the demo lab - `git push`
+- [ ] [Merging ERDs](./Design/ESP-Merge.md)
 
 ----
 
