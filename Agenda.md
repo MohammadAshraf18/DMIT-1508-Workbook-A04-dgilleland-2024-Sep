@@ -53,37 +53,63 @@
 
 ### Sep 11
 
-- [ ] Normalization
-  - [ ] Demos
-    - [ ] [ESP 3](https://dmit-1508.github.io/demos/esp/specs/ESP-3-Specs.html)
+- [x] Normalization
+  - [x] Demos
+    - [x] [ESP 3](https://dmit-1508.github.io/demos/esp/specs/ESP-3-Specs.html)
     - List key questions to ask yourself when checking whether you've correctly processed meta-data through 1NF to 3NF.
 
 ### Sep 13
 
-- [ ] Normalization
-  - [ ] Finished ESP 3
+- [x] Normalization
+  - [x] Finished ESP 3
 
 ----
 
 ### Sep 17
 
-- [ ] Normalization
-  - [ ] Solutions to [ESP 4](https://dmit-1508.github.io/demos/esp/specs/ESP-4.html) and [ESP 5](https://dmit-1508.github.io/demos/esp/specs/ESP-5.html)
+- [x] Normalization
+  - [x] Solutions to [ESP 4](https://dmit-1508.github.io/demos/esp/specs/ESP-4.html) and [ESP 5](https://dmit-1508.github.io/demos/esp/specs/ESP-5.html)
 
 ### Sep 18
 
-- [ ] ERDs
-  - [ ] Creating ERDs from Normalization Results
-  - [ ] Merging ERDs
+- [x] ERDs
+  - [x] Creating ERDs from Normalization Results
 
 ### Sep 20
 
 - [ ] Practice/Demo Lab
   - [ ] Writing in Markdown (sample Normalization)
+
+    ```md
+    ## Normalization of Student Registration
+
+    ### 0N - 3NF
+
+    > Pretend for a moment that I've analyzed a form all the way through 3NF
+
+    ### Final Set of Entities
+
+    **Student**: StudentID(PK), FirstName, LastName
+
+    **CourseRegistration**: StudentID(PK|FK1), CourseID(PK|FK2), EnrolmentStatus, CurrentTerm
+
+    **Course**: CourseID(PK), Name, Credits, TotalHours
+    ```
+
   - [ ] ERDs using [Mermaid syntax](https://mermaid.js.org/syntax/entityRelationshipDiagram.html)
   - [ ] Committing Your Changes
   - [ ] Submitting the demo lab - `git push`
 - [ ] [Merging ERDs](./Design/ESP-Merge.md)
+
+----
+
+### Sep 24
+
+- [ ] *Online Class*: **Work Period**
+
+### Sep 25
+
+- [ ] Intro to SQL
 
 ----
 
