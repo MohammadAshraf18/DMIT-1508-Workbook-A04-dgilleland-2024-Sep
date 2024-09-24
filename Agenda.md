@@ -131,13 +131,26 @@
 
 ----
 
-### Sep 24
+### Sep 24 *(Online)*
 
 - [ ] *Online Class*: **Work Period**
 
 ### Sep 25
 
-- [ ] Intro to SQL
+- [ ] [Intro to SQL](./Docs/logs/ReadMe.md#introduction-to-sql)
+  - [ ] Reading Physical ERDs
+  - [ ] Intro to DDL
+
+### Sep 27
+
+- [ ] More DDL
+
+----
+
+### Oct 1 *(Online)*
+
+- [ ] Complete DDL
+- [ ] DML
 
 ----
 
