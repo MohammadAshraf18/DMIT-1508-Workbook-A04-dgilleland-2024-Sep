@@ -163,6 +163,7 @@
 ### Oct 2
 
 - [ ] Solution to Lab 1
+- [ ] Comments on **Quiz 1** *(upcoming)*
 - [ ] Lab 2a - Startup
 - [ ] External Resource: [SQL Glossary of Terms](https://www.databasestar.com/sql-glossary/)
 
