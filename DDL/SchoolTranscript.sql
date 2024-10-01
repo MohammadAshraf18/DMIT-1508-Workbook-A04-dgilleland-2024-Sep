@@ -74,12 +74,30 @@ CREATE TABLE Courses
     [Number]        varchar(10) -- cannot be used with IDENTITY
         CONSTRAINT PK_Courses_Number
             PRIMARY KEY
+        CONSTRAINT CK_Courses_Number
+            CHECK ([Number] LIKE '[a-z][a-z][a-z][a-z][- ][1-9][0-9][0-9][0-9]%')
                                     NOT NULL,
-    [Name]          varchar(50)     NOT NULL,
-    Credits         decimal(3,1)    NOT NULL,
-    [Hours]         tinyint         NOT NULL,
-    Active          bit             NOT NULL,
-    Cost            money           NOT NULL
+    [Name]          varchar(50)
+        CONSTRAINT CK_Courses_Name
+            CHECK (LEN([Name]) >= 5)
+            -- The LEN() function will return the number of characters
+                                    NOT NULL,
+    Credits         decimal(3,1)
+        CONSTRAINT CK_Courses_Credits
+            CHECK (Credits = 3.0 OR Credits = 4.5 OR Credits = 6.0)
+                                    NOT NULL,
+    [Hours]         tinyint
+        CONSTRAINT CK_Courses_Hours
+            CHECK ([Hours] IN (60, 75, 90, 120))
+                                    NOT NULL,
+    Active          bit
+        CONSTRAINT DF_Courses_Active
+            DEFAULT (1)
+                                    NOT NULL,
+    Cost            money
+        CONSTRAINT CK_Courses_Cost
+            CHECK (Cost >= 0) -- Always indicating the acceptable value
+                                    NOT NULL
 )
 
 CREATE TABLE StudentCourses
