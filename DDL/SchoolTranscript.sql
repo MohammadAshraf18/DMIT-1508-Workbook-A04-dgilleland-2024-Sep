@@ -34,9 +34,14 @@ DROP TABLE IF EXISTS Students
 -- separated list of column definitions.
 CREATE TABLE Students
 (
-    StudentID       int             
+    StudentID       int
+        -- Primary Key constraint ensures there are no duplicates
+        -- and uses this column to uniquely identify a row of data
         CONSTRAINT PK_Student_StudentID
             PRIMARY KEY
+        -- Assign the database the reponsibility to generate
+        -- a value for this column (using the IDENTITY)
+        IDENTITY(20250001, 3) -- The first student will have 20250001
                                     NOT NULL,
     GivenName       varchar(50)     NOT NULL,
     Surname         varchar(50)     NOT NULL,
@@ -44,9 +49,16 @@ CREATE TABLE Students
     Enrolled        bit             NOT NULL
 )
 
+-- Create a student (DML statement)
+INSERT INTO Students(GivenName, Surname, DateOfBirth, Enrolled)
+VALUES ('Sara', 'Bellum', 'Aug 1, 2005', 1)
+-- Explore the results (Query statement)
+SELECT * FROM Students
+
+
 CREATE TABLE Courses
 (
-    [Number]        varchar(10)
+    [Number]        varchar(10) -- cannot be used with IDENTITY
         CONSTRAINT PK_Courses_Number
             PRIMARY KEY
                                     NOT NULL,
