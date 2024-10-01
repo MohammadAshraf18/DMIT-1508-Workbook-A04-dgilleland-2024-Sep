@@ -58,6 +58,7 @@ CREATE TABLE Students
         CONSTRAINT CK_Students_DateOfBirth
             CHECK (DateOfBirth < GETDATE())
             -- Relational Comparison to the results of the GETDATE() function
+            -- The GETDATE() will return the current date/time
                                     NOT NULL,
     Enrolled        bit
         CONSTRAINT DF_Students_Enrolled
