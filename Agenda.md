@@ -140,17 +140,33 @@
 - [ ] [Intro to SQL](./Docs/logs/ReadMe.md#introduction-to-sql)
   - [ ] Reading Physical ERDs
   - [ ] Intro to DDL
+    - [ ] `CREATE DATABASE` and `USE` statements
+    - [ ] `CREATE TABLE` basics
+    - [ ] `DROP TABLE`
 
 ### Sep 27
 
 - [ ] More DDL
+  - [ ] `NULL`/`NOT NULL`
+  - [ ] Primary and Foreign Keys
 
 ----
 
 ### Oct 1 *(Online)*
 
-- [ ] Complete DDL
-- [ ] DML
+- [ ] More DDL
+  - [ ] `IDENTITY(seed,increment)`
+  - [ ] Check and Default Constraints
+  - [ ] Indexes
+- [ ] DML Intro
+
+### Oct 2
+
+- [ ] Solution to Lab 1
+
+### Oct 4
+
+- [ ] *TBD*
 
 ----
 
