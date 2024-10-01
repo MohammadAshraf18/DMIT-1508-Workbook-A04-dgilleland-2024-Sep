@@ -157,7 +157,6 @@
 - [ ] More DDL
   - [ ] `IDENTITY(seed,increment)`
   - [ ] Check and Default Constraints
-  - [ ] Indexes
 - [ ] DML Intro
 
 ### Oct 2
@@ -169,7 +168,11 @@
 
 ### Oct 4
 
-- [ ] *TBD*
+- [ ] More DDL
+  - [ ] Finish constraints on `StudentCourses` table
+  - [ ] Alter Table statements
+  - [ ] Indexes
+- [ ] DML Test Data (`INSERT`)
 
 ----
 
