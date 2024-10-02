@@ -2,7 +2,7 @@
 
 > ***NOTE:** This agenda is copied from the previous term and needs to be adjusted to this semester. Otherwise, the topics are generally in the correct order.*
 
-> These are my notes on what I plan to teach in each [upcoming class](#sep-20). For the timeline of where we are today, see [the current schedule](./README.md#schedule).
+> These are my notes on what I plan to teach in each [upcoming class](#oct-2). For the timeline of where we are today, see [the current schedule](./README.md#schedule).
 >
 > ### *... Warn those who are idle ..., encourage the disheartened, help the weak, be patient with everyone.*
 >
@@ -163,6 +163,9 @@
 
 - [ ] Solution to Lab 1
 - [ ] Comments on **Quiz 1** *(upcoming)*
+  - 3 Forms/Views to Normalize
+  - Merge (by listing final merged entities - **no ERD drawing**)
+  - Closed book - Allowed the supplied Normalization Summary PDF
 - [ ] Lab 2a - Startup
 - [ ] External Resource: [SQL Glossary of Terms](https://www.databasestar.com/sql-glossary/)
 
@@ -173,6 +176,22 @@
   - [ ] Alter Table statements
   - [ ] Indexes
 - [ ] DML Test Data (`INSERT`)
+
+----
+
+### Oct 8 *(Online)*
+
+- [ ] *Finish DDL*
+- [ ] 
+
+### Oct 9
+
+- [ ] **Quiz 1**
+
+### Oct 11
+
+- [ ] Lab 2a due today
+- [ ] 
 
 ----
 
