@@ -1,5 +1,9 @@
-/*
+/*  TEST DATA
+    Having test data that we can insert into our database tables
+    will help us to ensure that our CREATE TABLE and ALTER TABLE statements
+    are running correctly.
 */
+
 -- Database scripts execute within a certain context - a specific database.
 SELECT DB_NAME() AS 'Initial Database'  -- should be [master] when first executed
 GO
@@ -9,6 +13,8 @@ GO
 SELECT DB_NAME() AS 'Active Database'   -- shows that we are in the correct database
 GO
 
+
+/*=== Start of Test Data ===*/
 
 -- Create a student (DML statement)
 INSERT INTO Students(GivenName, Surname, DateOfBirth, Enrolled)
