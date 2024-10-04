@@ -16,9 +16,24 @@ GO
 
 /*=== Start of Test Data ===*/
 
--- Create a student (DML statement)
+-- Add a single student (DML statement)
 INSERT INTO Students(GivenName, Surname, DateOfBirth, Enrolled)
-VALUES ('Sara', 'Bellum', 'Aug 1, 2005', 1)
+VALUES  ('Sara', 'Bellum', 'Aug 1, 2005', 1)
+
+-- Add multiple students (with default constraints)
+INSERT INTO Students(GivenName, Surname, DateOfBirth)
+VALUES  ('Oliver', 'Nerr', ''), -- O. Nerr
+        ('Stewart', 'Dent', ''), -- Stew Dent
+        ('Yu', 'Sur', ''),
+        ('Anne', 'Nother', ''),
+        ('Dee', 'Vellop-Ur', '')
+
+/*
+-- Add these students after altering the table constraints
+INSERT INTO Students(GivenName, MiddleNames, Surname, DateOfBirth)
+VALUES  ('Reginald', 'Ian', 'Stirr', '') -- Reg I. Stirr
+*/
+
 -- Explore the results (Query statement)
 SELECT * FROM Students
 
