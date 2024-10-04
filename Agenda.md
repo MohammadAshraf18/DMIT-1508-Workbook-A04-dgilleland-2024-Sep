@@ -171,30 +171,34 @@
 
 ### Oct 4
 
-- [ ] More DDL
+- [ ] Complete DDL
   - [ ] Finish constraints on `StudentCourses` table
-  - [ ] Alter Table statements
+  - [ ] Updates to [`SchoolTranscriptTestData.sql`](./DDL/SchoolTranscriptTestData.sql)
   - [ ] Indexes
-- [ ] DML Test Data (`INSERT`)
+  - [ ] Alter Table statements
+    - [ ] `Students.MiddleName`
+    - [ ] others
+  - [ ] Refer to ESP Demo code
+  - [ ] Lab Time
 
 ----
 
 ### Oct 8 *(Online)*
 
-- [ ] *Finish DDL*
-- [ ] 
+- [ ] Lab time
 
 ### Oct 9
 
 - [ ] **Quiz 1**
 
-### Oct 11
+### Oct 10
 
-- [ ] Lab 2a due today
-- [ ] 
+- [ ] DML Statements
+- [ ] Lab 2a due tomorrow
 
 ----
 
+<!--
 ## TENTATIVE SCHEDULE
 
 ### Sep 6
@@ -265,3 +269,4 @@
 - [ ] Answer to *SchoolTranscript.sql* `ALTER TABLE` and `CREATE INDEX` problems
 - [ ] Intro to SQL Queries
 
+-->

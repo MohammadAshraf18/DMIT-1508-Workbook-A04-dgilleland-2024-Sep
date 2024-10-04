@@ -1,23 +1,24 @@
 /*
-    Database scripts execute within
-    a certain context - a specific
-    database.
-    We can change the context through
-    the USE statement.
 */
-SELECT DB_NAME() AS 'Initial Database'
+-- Database scripts execute within a certain context - a specific database.
+SELECT DB_NAME() AS 'Initial Database'  -- should be [master] when first executed
 GO
--- Ensuring that I'm inside the correct database
-USE [SchoolTranscript]
+-- We can change the context through the USE statement,ensuring that we're inside the correct database
+USE [SchoolTranscript]  -- Switch to the desired database
 GO
-SELECT DB_NAME() AS 'Active Database'
+SELECT DB_NAME() AS 'Active Database'   -- shows that we are in the correct database
 GO
 
 
 -- Create a student (DML statement)
 INSERT INTO Students(GivenName, Surname, DateOfBirth, Enrolled)
 VALUES ('Sara', 'Bellum', 'Aug 1, 2005', 1)
-INSERT INTO Students(GivenName, Surname, DateOfBirth, Enrolled)
-VALUES  ('B', '4', 'Aug 20, 2025', 1)
 -- Explore the results (Query statement)
 SELECT * FROM Students
+
+
+/*
+-- Samples of "bad" data (violates CHECK constraints)
+INSERT INTO Students(GivenName, Surname, DateOfBirth, Enrolled)
+VALUES  ('B', '4', 'Aug 20, 2025', 1)
+*/
