@@ -100,6 +100,13 @@ CREATE TABLE Courses
                                     NOT NULL
 )
 
+/*
+StudentCourses table
+ Year must be between 2000 and 2299
+ Term must be either "SEP", "JAN" or "MAY"
+ FinalMark must be between 0 and 100
+ Status must be either 'W', 'E', or 'A' (Withdrawal, Enrolled, or Audit) and must default to 'E'
+*/
 CREATE TABLE StudentCourses
 (
     StudentID       int
@@ -110,10 +117,24 @@ CREATE TABLE StudentCourses
         CONSTRAINT FK_StudentCourses_CourseNumber
             FOREIGN KEY REFERENCES Courses([Number])
                                     NOT NULL,
-    [Year]          smallint        NOT NULL,
-    Term            char(3)         NOT NULL,
-    FinalMark       tinyint             NULL,
-    [Status]        char(1)         NOT NULL,
+    [Year]          smallint
+        CONSTRAINT CK_StudentCourses_Year
+            CHECK ([Year] BETWEEN 2000 AND 2299)
+                                    NOT NULL,
+    Term            char(3)
+        CONSTRAINT CK_StudentCourses_Term
+            CHECK (Term IN ('SEP', 'JAN', 'MAY'))
+                                    NOT NULL,
+    FinalMark       tinyint
+        CONSTRAINT CK_StudentCourses_FinalMark
+            CHECK (FinalMark BETWEEN 0 AND 100)
+                                        NULL,
+    [Status]        char(1)
+        CONSTRAINT CK_StudentCourses_Status
+            CHECK ([Status] IN ('W', 'E', 'A'))
+        CONSTRAINT DF_StudentCourses_Status
+            DEFAULT ('E')
+                                    NOT NULL,
     -- Table-level constraint for any constraints
     -- that involve more than one column/attribute
     CONSTRAINT PK_StudentCourses_StudentID_CourseNumber
