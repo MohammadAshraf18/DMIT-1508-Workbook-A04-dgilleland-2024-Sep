@@ -52,26 +52,26 @@ VALUES  ('Oh', 'No', 'Feb 5, 2045') -- This is a bad date
 /* Lots of Courses */
 
 INSERT INTO Courses ([Number], [Name], Credits, [Hours], Active, Cost)
-VALUES  ('COMP-1001', 'Introduction to Programming', 3.0, 60, 1, 500.00),
-        ('COMP-1002', 'Data Structures', 4.5, 75, 1, 750.00),
-        ('COMP-1003', 'Database Systems', 3.0, 60, 1, 500.00),
-        ('COMP-1004', 'Web Development', 4.5, 75, 1, 750.00),
-        ('COMP-1005', 'Software Engineering', 6.0, 90, 1, 1000.00),
-        ('COMP-1006', 'Operating Systems', 3.0, 60, 1, 500.00),
-        ('COMP-1007', 'Computer Networks', 4.5, 75, 1, 750.00),
-        ('COMP-1008', 'Algorithms', 6.0, 90, 1, 1000.00),
-        ('COMP-1009', 'Mobile App Development', 3.0, 60, 1, 500.00),
-        ('COMP-1010', 'Cyber Security', 4.5, 75, 1, 750.00),
-        ('COMP-1011', 'Cloud Computing', 6.0, 90, 1, 1000.00),
-        ('COMP-1012', 'Artificial Intelligence', 3.0, 60, 1, 500.00),
-        ('COMP-1013', 'Machine Learning', 4.5, 75, 1, 750.00),
-        ('COMP-1014', 'Big Data Analytics', 6.0, 90, 1, 1000.00),
-        ('COMP-1015', 'Human-Computer Interaction', 3.0, 60, 1, 500.00),
-        ('COMP-1016', 'Software Testing', 4.5, 75, 1, 750.00),
-        ('COMP-1017', 'DevOps', 6.0, 90, 1, 1000.00),
-        ('COMP-1018', 'Game Development', 3.0, 60, 1, 500.00),
-        ('COMP-1019', 'Blockchain Technology', 4.5, 75, 1, 750.00),
-        ('COMP-1020', 'Ethical Hacking', 6.0, 90, 1, 1000.00)
+VALUES  ('PROG-1001', 'Introduction to Programming', 3.0, 60, 1, 500.00),
+        ('PROG-1002', 'Data Structures', 4.5, 75, 1, 750.00),
+        ('PROG-1003', 'Database Systems', 3.0, 60, 1, 500.00),
+        ('PROG-1004', 'Web Development', 4.5, 75, 1, 750.00),
+        ('PROG-1005', 'Software Engineering', 6.0, 90, 1, 1000.00),
+        ('PROG-1506', 'Operating Systems', 3.0, 60, 1, 500.00),
+        ('PROG-1507', 'Computer Networks', 4.5, 75, 1, 750.00),
+        ('PROG-1508', 'Algorithms', 6.0, 90, 1, 1000.00),
+        ('PROG-1509', 'Mobile App Development', 3.0, 60, 1, 500.00),
+        ('PROG-1510', 'Cyber Security', 4.5, 75, 1, 750.00),
+        ('PROG-2011', 'Cloud Computing', 6.0, 90, 1, 1000.00),
+        ('PROG-2012', 'Artificial Intelligence', 3.0, 60, 1, 500.00),
+        ('PROG-2013', 'Machine Learning', 4.5, 75, 1, 750.00),
+        ('PROG-2014', 'Big Data Analytics', 6.0, 90, 1, 1000.00),
+        ('PROG-2015', 'Human-Computer Interaction', 3.0, 60, 1, 500.00),
+        ('PROG-2516', 'Software Testing', 4.5, 75, 1, 750.00),
+        ('PROG-2517', 'DevOps', 6.0, 90, 1, 1000.00),
+        ('PROG-2518', 'Game Development', 3.0, 60, 1, 500.00),
+        ('PROG-2519', 'Blockchain Technology', 4.5, 75, 1, 750.00),
+        ('PROG-2520', 'Ethical Hacking', 6.0, 90, 1, 1000.00)
 
 
 /* More Students! */
@@ -106,3 +106,26 @@ VALUES  ('Alice', 'Smith', '2001-01-15'),
         ('Brian', 'Roberts', '2006-03-07'),
         ('Chris', 'Turner', '2006-07-25'),
         ('Daniel', 'Phillips', '2007-11-14')
+
+
+/* Modifying the Courses data to fit a pattern for the semester*/
+UPDATE  Courses
+SET     Semester = 1
+WHERE   [Number] LIKE '_____10%'
+
+UPDATE  Courses
+SET     Semester = 2
+WHERE   [Number] LIKE '_____15%'
+
+UPDATE  Courses
+SET     Semester = 3
+WHERE   [Number] LIKE '_____20%'
+
+UPDATE  Courses
+SET     Semester = 4
+WHERE   [Number] LIKE '_____25%'
+
+/*
+SELECT * FROM Students
+SELECT * FROM Courses
+*/
