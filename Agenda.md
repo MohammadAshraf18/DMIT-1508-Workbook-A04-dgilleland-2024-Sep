@@ -183,6 +183,10 @@
 
 ----
 
+### Oct 7
+
+![](./Docs/Images/bth-64.png)
+
 ### Oct 8 *(Online)*
 
 - [ ] Lab time
