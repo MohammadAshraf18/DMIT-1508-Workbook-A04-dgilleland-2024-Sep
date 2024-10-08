@@ -37,7 +37,7 @@ CREATE TABLE Students
     StudentID       int
         -- Primary Key constraint ensures there are no duplicates
         -- and uses this column to uniquely identify a row of data
-        CONSTRAINT PK_Student_StudentID
+        CONSTRAINT PK_Students_StudentID
             PRIMARY KEY
         -- Assign the database the reponsibility to generate
         -- a value for this column (using the IDENTITY)
@@ -48,6 +48,13 @@ CREATE TABLE Students
             CHECK (GivenName LIKE '[A-Z][A-Z]%')
             -- Pattern Matching    \___/\___/\- % means zero or more characters
             --                      |- A single character ranging from A to Z
+            -- Here are samples of values that would "pass" the check constraint
+            --      'Bellum'
+            --      'Yu'
+            --      'Je55'
+            -- The following would "fail" and prevent a row of data being entered
+            --      'J'
+            --      '5ally'
                                     NOT NULL,
     Surname         varchar(50)
         CONSTRAINT CK_Students_Surname
@@ -76,6 +83,7 @@ CREATE TABLE Courses
             PRIMARY KEY
         CONSTRAINT CK_Courses_Number
             CHECK ([Number] LIKE '[a-z][a-z][a-z][a-z][- ][1-9][0-9][0-9][0-9]%')
+            --                    \ four letters     /\  /\ four digits      /
                                     NOT NULL,
     [Name]          varchar(50)
         CONSTRAINT CK_Courses_Name
@@ -135,13 +143,15 @@ CREATE TABLE StudentCourses
         CONSTRAINT DF_StudentCourses_Status
             DEFAULT ('E')
                                     NOT NULL,
-    -- Table-level constraint for any constraints
-    -- that involve more than one column/attribute
+    -- In order to create a constraint that involves two or more columns,
+    -- you have to put those "separate" in your CREATE TABLE as a
+    -- table-level constraint
     CONSTRAINT PK_StudentCourses_StudentID_CourseNumber
         PRIMARY KEY (StudentID, CourseNumber),
     -- Here is a CHECK constraint that involves more
     -- than one column:
-    
+    CONSTRAINT CK_StudentCourses_FinalMark_Status
+        CHECK ([Status] <> 'A' OR ([Status] = 'A' AND FinalMark IS NULL))
 )
 
 GO
@@ -172,6 +182,9 @@ ALTER TABLE Students
 --    better accommodate students with hypenated surnames.
 ALTER TABLE Students
     ALTER COLUMN Surname    varchar(100)    NOT NULL
+-- Notice that we are modifying an existing column in the
+-- table, and that it was already `NOT NULL`. We can keep
+-- this aspect of the column being required (NOT NULL)
 
 -- D) Add a column to the Courses table for the Semester.
 --    Store the Semester number as a tinyint. Allow it to
@@ -187,9 +200,13 @@ ALTER TABLE Courses
 --    Students can take without having to be enrolled in
 --    the entire Program of Studies.
 ALTER TABLE Courses
-    ADD [OpenStudies]   bit         NULL
+    ADD [OpenStudies]   bit     NOT NULL
         CONSTRAINT DF_Courses_OpenStudies
             DEFAULT (0)
+-- Because we have a default value that the database
+-- can use, we can make this column required (NOT NULL)
+-- and the database will simply put the default value
+-- into that column for all the pre-existing rows of data.
 
 /*
     In our database, we are able to create INDEXes that
@@ -201,3 +218,4 @@ CREATE NONCLUSTERED INDEX IX_StudentCourses_StudentID
 
 CREATE NONCLUSTERED INDEX IX_StudentCourses_CourseNumber
     ON StudentCourses(CourseNumber)
+    
