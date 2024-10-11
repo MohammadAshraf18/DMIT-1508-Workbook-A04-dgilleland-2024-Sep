@@ -1,5 +1,5 @@
 -- Insert Examples
-USE [A0X-School]
+USE [A04-School] -- This is the database for our section
 GO -- Execute the code up to this point as a single batch
 
 /*  Notes:
@@ -56,6 +56,10 @@ FROM    Position
 WHERE   PositionID NOT IN (SELECT PositionID FROM Staff)
 --      Add Sheldon Murray as the new Assistant Dean.
 -- TODO: Student Answer Here....
+INSERT INTO Staff(LastName, DateHired, FirstName, PositionID)
+SELECT 'Murray', GETDATE(), 'Sheldon', PositionID
+FROM   Position
+WHERE  PositionDescription = 'Assistant Dean'
 
 -- 3. There are three additional clubs being started at the school:
 --      - START - Small Tech And Research Teams

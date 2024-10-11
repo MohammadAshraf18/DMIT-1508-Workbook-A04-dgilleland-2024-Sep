@@ -1,15 +1,15 @@
 /* School database - DMIT-1508-A01, Jan 2017 
-   Table Creation and Load Data Script 
+   Table Creation and Load Data Script - Change lines 6, 8, 12, and 157 to reflect your section number
    **************************************** */
 SELECT DB_NAME() AS 'Active Database'
 GO
-IF NOT EXISTS (SELECT name FROM master.sys.databases WHERE name = N'A0X-School')
+IF NOT EXISTS (SELECT name FROM master.sys.databases WHERE name = N'A04-School')
 BEGIN
-    CREATE DATABASE [A0X-School]
+    CREATE DATABASE [A04-School]
 END
 GO
 
-USE [A0X-School]
+USE [A04-School]
 GO
 SELECT DB_NAME() AS 'Active Database'
 GO
@@ -154,7 +154,7 @@ go
 
 /* School158 Data Inserts */
 
-USE [A0X-School]
+USE [A04-School]
 GO
 
 delete from Payment
