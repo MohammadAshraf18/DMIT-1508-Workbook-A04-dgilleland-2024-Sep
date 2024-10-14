@@ -198,7 +198,23 @@
 ### Oct 10
 
 - [ ] DML Statements
-- [ ] Lab 2a due tomorrow
+- [ ] Lab 2a due today
+
+----
+
+### Oct 15 *(Online)*
+
+- [ ] DML Statements
+  - [ ] `UPDATE` and `DELETE`
+
+### Oct 16
+
+- [ ] Queries
+
+### Oct 18
+
+- [ ] Queries
+
 
 ----
 
