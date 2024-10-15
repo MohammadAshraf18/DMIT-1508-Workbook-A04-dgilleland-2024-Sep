@@ -1,5 +1,5 @@
 -- Update Examples
-USE [A0X-School]
+USE [A04-School]
 GO -- Execute the code up to this point as a single batch
 
 /*  Notes:
@@ -20,6 +20,8 @@ GO -- Execute the code up to this point as a single batch
 -- SELECT * FROM Course
 UPDATE Course
 SET    CourseCost = CourseCost * 1.10
+--                  \________/
+--                    |- The value that was in the table BEFORE the UPDATE statement is executed.
 WHERE  CourseName IN ('Expert SQL', 'Quality Assurance')
 -- Should see 2 rows affected
 
