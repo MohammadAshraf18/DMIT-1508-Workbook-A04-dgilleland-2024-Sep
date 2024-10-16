@@ -2,7 +2,7 @@
 -- This set of exercises demonstrates performing simple Aggregate functions
 -- to get results such as SUM(), AVG(), COUNT() 
 -- All aggregates are done using built-in functions in the database
-USE [A0X-School]
+USE [A04-School]
 GO
 SELECT DB_NAME() AS 'Active Database'
 GO
@@ -24,6 +24,7 @@ FROM    Registration
 SELECT  AVG(Mark) AS 'Average Mark' -- Some Aggregate functions expect to work with numbers
 FROM    Registration
 WHERE   CourseId = 'DMIT104'
+-- SELECT * FROM Registration
 
 --3.	Select how many students are there in the Student Table
 SELECT  COUNT(FirstName) AS 'Student Count'

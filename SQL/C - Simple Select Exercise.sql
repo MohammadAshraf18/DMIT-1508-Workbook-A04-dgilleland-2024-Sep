@@ -2,7 +2,7 @@
 -- This sample set illustrates the GROUP BY syntax and the use of Aggregate functions
 -- with GROUP BY.
 -- It also demonstrates the HAVING clause to filter on aggregate values.
-USE [A0X-School]
+USE [A04-School]
 GO
 SELECT DB_NAME() AS 'Active Database'
 GO
@@ -33,7 +33,7 @@ SELECT  PaymentTypeID,                              -- Non-aggregate column (btw
         COUNT(PaymentTypeID) AS 'Count of Pay Type' -- Aggregate column
 FROM    Payment
 GROUP BY PaymentTypeID
-ORDER BY COUNT(PaymentTypeID)
+ORDER BY COUNT(PaymentTypeID) DESC
 -- HELP! Is the answer above correct?? How can we fix it?
 /* A note on ORDER BY
    - The ORDER BY clause will, by default, do the sorting in ascending order.
@@ -70,7 +70,7 @@ GROUP BY City
 
 -- 6. Which cities have 2 or more students from them? (HINT, remember that fields that we use in the where or having do not need to be selected.....)
 SELECT  City
---        , COUNT(StudentID) AS 'Student Count'
+        -- , COUNT(StudentID) AS 'Student Count'
 FROM    Student
 GROUP BY City
 HAVING COUNT(StudentID) >= 2
