@@ -1,5 +1,5 @@
 --Joins Exercise 1
-USE [A0X-School]
+USE [A04-School]
 GO
 SELECT DB_NAME() AS 'Active Database'
 GO
@@ -15,7 +15,7 @@ FROM    Student -- Start the FROM statement by identifying one of the tables you
 
 --1.a. Select Student full names, the course ID and the course name that the students are registered in.
 SELECT  FirstName + ' ' + LastName AS 'FullName',
-        C.CourseId,
+        C.CourseId, -- I need to fully qualify the CourseId column to know which table I'm using
         CourseName
 FROM    Student AS S
     INNER JOIN Registration AS R
