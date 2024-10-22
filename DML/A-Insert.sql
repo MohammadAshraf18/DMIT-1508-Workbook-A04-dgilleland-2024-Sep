@@ -101,3 +101,7 @@ WHERE (FirstName = 'Nevaeh' AND LastName = 'Bell' AND Birthdate = '07/03/1997')
    OR (FirstName = 'Vivan' AND LastName = 'Morgan' AND Birthdate = '08/03/1996')
    OR (FirstName = 'Ryan' AND LastName = 'Warren' AND Birthdate = '05/04/2001')
 
+
+-- 6. We want to be able to engage in the new economy! Let's add a new Payment Type to the database. The description is "BitCoin".
+-- TODO: Student Answer Here....
+
