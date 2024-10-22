@@ -1,5 +1,5 @@
 --Inner Joins With Aggregates Exercises
-USE [A0X-School]
+USE [A04-School]
 GO
 SELECT DB_NAME() AS 'Active Database'
 GO
@@ -9,6 +9,7 @@ SELECT  PositionDescription,                    --  <-- non-aggregate
         COUNT(S.StaffID) AS 'Number of Staff'   --  <-- aggregate
 FROM    Staff AS S
     INNER JOIN Position AS P ON P.PositionID = S.PositionID
+    --                          \___ PK ___/   \___ FK ___/
 GROUP BY PositionDescription 
  
 -- Out of curiosity, what are ALL the position names?
@@ -27,6 +28,12 @@ ORDER BY 'Average Mark' DESC -- You can use the Column Name for sorting
 
 --3. How many payments where made for each payment type. Display the PaymentTypeDescription and the count.
  -- TODO: Student Answer Here... 
+SELECT  PT.PaymentTypeDescription,  -- The description comes from one table
+        COUNT(P.PaymentTypeID) AS 'Count'      -- The counting is done in a different table
+FROM    PaymentType AS PT
+    INNER JOIN Payment AS P
+        ON P.PaymentTypeID = PT.PaymentTypeID -- fk == PK
+GROUP BY PT.PaymentTypeDescription  -- Group by the non-aggregate
 
 
 --4. Select the average Mark for each student. Display the Student Name and their average mark. Use table aliases in your FROM & JOIN clause.
