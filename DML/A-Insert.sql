@@ -105,3 +105,7 @@ WHERE (FirstName = 'Nevaeh' AND LastName = 'Bell' AND Birthdate = '07/03/1997')
 -- 6. We want to be able to engage in the new economy! Let's add a new Payment Type to the database. The description is "BitCoin".
 -- TODO: Student Answer Here....
 
+
+-- 7. We need a new job position. Add a position for "Career Counselor"
+-- TODO: Student Answer Here....
+
