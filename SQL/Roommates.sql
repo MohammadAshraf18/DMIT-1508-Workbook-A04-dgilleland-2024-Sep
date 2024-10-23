@@ -43,7 +43,7 @@ CREATE TABLE People
         CONSTRAINT FK_Person_Rental
             FOREIGN KEY REFERENCES Rentals(RentalId)
                                         NULL,
-    WantingRoommate     timestamp       NULL,
+    WantingRoommate datetimeoffset      NULL,
 )
 
 GO
@@ -67,6 +67,9 @@ VALUES ('Sherlock', 'Holmes', 1),
        ('Wilma', 'Slaghoople', 3),
        ('Betty', 'McBricker', 3)
 GO
+
+SELECT * FROM Rentals
+SELECT * FROM People
 
 -- A demo of why we should use JOINs in our FROM clauses...
 -- BAD WAY
