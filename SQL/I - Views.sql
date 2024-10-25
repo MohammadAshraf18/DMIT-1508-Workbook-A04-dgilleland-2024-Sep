@@ -1,5 +1,5 @@
 --View Exercise
-USE [A0X-School]
+USE [A04-School]
 GO
 SELECT DB_NAME() AS 'Active Database'
 GO

@@ -1,5 +1,5 @@
 --Union Exercise (using the IQSchool database)
-USE [A0X-School]
+USE [A04-School]
 GO
 SELECT DB_NAME() AS 'Active Database'
 GO
@@ -70,7 +70,11 @@ AS
     FROM    Staff AS S
         INNER JOIN Position AS P ON S.PositionID = P.PositionID
 GO
-
+-- Let's use this RollCall view to get information
+SELECT  [FullName],
+        [Role]
+FROM    RollCall
+WHERE   FullName LIKE '%Smith'
 
 --2.  Create a list of course IDs and the number of students in the course and
 --    UNION that with a list of the course IDs and the MaxStudents of the course.
@@ -88,3 +92,5 @@ SELECT  CourseId,
         MaxStudents,
         'Planned'
 FROM    Course
+
+ORDER BY CourseId
