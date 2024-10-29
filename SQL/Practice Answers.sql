@@ -307,7 +307,10 @@ WHERE   PositionID = 5
 -- 10. Select the staff names and the name of the month they were hired
 --     and order the results by the month number.
 -- TODO: Student Answer Here...
-
+SELECT  FirstName + ' ' + LastName AS 'Staff Name',
+        DATENAME(mm, DateHired) AS 'Month Name'
+FROM    Staff
+ORDER BY MONTH(DateHired)
 
 /* ===============================
    |  F - Inner Join Aggregates  |
