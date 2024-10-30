@@ -215,6 +215,129 @@
 
 - [ ] Queries
 
+----
+
+### Oct 22
+
+- [ ] Queries
+
+### Oct 23
+
+- [ ] Queries
+
+### Oct 25
+
+- [ ] Queries
+
+----
+
+### Oct 29
+
+- [ ] **Lab Time**
+
+### Oct 30
+
+- [ ] **Lab Time**
+
+### Nov 1
+
+- [ ] **Lab Time**
+
+----
+
+### Nov 5
+
+- [ ] Stored Procedures
+
+
+### Nov 6
+
+- [ ] Stored Procedures
+
+
+### Nov 8
+
+- [ ] Stored Procedures
+
+----
+
+### Nov 12
+
+- [ ] Stored Procedures
+
+
+### Nov 13
+
+- [ ] **Quiz 2** - DDL + DML + Queries
+
+
+### Nov 15
+
+- [ ] Stored Procedures
+
+----
+
+### Nov 19
+
+- [ ] Stored Procedures
+
+
+### Nov 20
+
+- [ ] *TBD*
+
+
+### Nov 22
+
+- [ ] *TBD*
+
+----
+
+### Nov 26
+
+- [ ] Triggers
+
+
+### Nov 27
+
+- [ ] Triggers
+
+
+### Nov 29
+
+- [ ] Triggers
+
+----
+
+### Dec 3
+
+- [ ] Triggers
+
+
+### Dec 4
+
+- [ ] **Quiz 3**
+
+
+### Dec 6
+
+- [ ] **Lab Time**
+
+----
+
+### Dec 10
+
+- [ ] *TBD*
+
+
+### Dec 11
+
+- [ ] **Quiz 3**
+
+
+### Dec 13
+
+- [ ] *TBD*
 
 ----
 
