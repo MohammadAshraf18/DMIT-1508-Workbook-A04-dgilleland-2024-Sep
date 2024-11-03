@@ -257,13 +257,13 @@
 
 ### Nov 8
 
-- [ ] Stored Procedures
+- ***No Classes***
 
 ----
 
 ### Nov 12
 
-- [ ] Stored Procedures
+- ***No Classes***
 
 
 ### Nov 13
@@ -284,12 +284,12 @@
 
 ### Nov 20
 
-- [ ] *TBD*
+- [ ] Stored Procedures
 
 
 ### Nov 22
 
-- [ ] *TBD*
+- [ ] Stored Procedures
 
 ----
 
