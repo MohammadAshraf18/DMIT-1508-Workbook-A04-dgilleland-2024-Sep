@@ -1,7 +1,7 @@
 --Stored Procedures (Sprocs)
 --  A Stored Procedure is a controlled execution of some SQL script.
 
-USE [A0X-School]
+USE [A04-School]
 GO
 SELECT DB_NAME() AS 'Active Database'
 GO
@@ -33,7 +33,7 @@ CREATE PROCEDURE GetName
     -- Parameters here
 AS
     -- Body of procedure here
-    SELECT  'Dan', 'Gilleland'
+    SELECT  'Dan' AS 'FirstName', 'Gilleland' AS LastName
     -- How would you change the line above to put column names on the result set?
 RETURN
 GO
@@ -42,13 +42,13 @@ GO
 EXEC GetName
 
 /* Variables and Flow Control */
-
+-- All variable names begin with the @ symbol.
 -- Declare a variable
 DECLARE @Cost money
 -- Set a value for the variable using a value from the database
 -- Note that the whole SELECT statement is in parenthesis
 SET @Cost = (SELECT CourseCost FROM Course WHERE CourseId = 'DMIT101')
-PRINT @Cost
+PRINT @Cost -- The only place that a PRINT shows its results in on the DB Server
 
 -- Understanding BEGIN/END blocks
 --  A BEGIN/END block basically acts like a pair of curly braces in C#.
@@ -172,7 +172,7 @@ DROP PROCEDURE IF EXISTS NotInCourse
 GO
 CREATE PROCEDURE NotInCourse
     -- Parameters here
-    @CourseNumber   char(7)
+    @CourseNumber   char(7) -- char(7) will match the data type of my CourseId column
 AS
     -- Body of procedure here
     SELECT  DISTINCT FirstName + ' ' + LastName AS 'Student Name'        
