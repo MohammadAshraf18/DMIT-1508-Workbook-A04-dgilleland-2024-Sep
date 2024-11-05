@@ -8,7 +8,7 @@ When there is something wrong with the data that is supplied in the parameters, 
 The implication of this is that since our SQL code in our sproc will continue to run, we need to be purposeful about using the ELSE side of our IF statements.
 */
 
-USE [A0X-School]
+USE [A04-School]
 GO
 SELECT DB_NAME() AS 'Active Database'
 GO
@@ -161,6 +161,9 @@ AS
         WHERE   StudentId = @StudentId 
     END   -- ...B }
 RETURN
+-- SELECT * FROM Student
+-- EXEC ChangeMailingAddress 199899200, '123-45 Street', 'Gibbons', 'AB', T0N3G3
+-- EXEC ChangeMailingAddress 200200, null, null, null, null
 
 -- 4. Create a stored procedure that allows us to make corrections to a student's name. It should take in the student ID and the corrected name (first/last) of the student. Call the stored procedure CorrectStudentName. Validate that the student exists before attempting to change the name.
 GO
@@ -171,9 +174,12 @@ CREATE PROCEDURE CorrectStudentName
     @FirstName      varchar(25),
     @LastName       varchar(35)
 AS
+    -- 0) NULL check of all required inputs
     IF @StudentId IS NULL OR @FirstName IS NULL OR @LastName IS NULL
         RAISERROR('All parameters are required.', 16, 1)
+    -- 1) Make sure the student exists
     ELSE IF NOT EXISTS (SELECT StudentID FROM Student WHERE StudentID = @StudentId)
+            --  \____ Will return FALSE when there are no rows, TRUE otherwise ___/
         RAISERROR('That student id does not exist', 16, 1)
     ELSE
         UPDATE  Student
@@ -182,6 +188,9 @@ AS
         WHERE   StudentID = @StudentId
 RETURN
 GO
+-- EXEC CorrectStudentName 200, 'Stew', 'Dent'
+-- EXEC CorrectStudentName 200, 'Stew', NULL
+
 
 -- 5. Create a stored procedure that will remove a student from a club. Call it RemoveFromClub.
 -- TODO: Student Answer Here
