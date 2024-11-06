@@ -1,8 +1,21 @@
 --Stored Procedures (Sprocs)
 -- Global Variables - @@IDENTITY, @@ROWCOUNT, @@ERROR
+--      @@IDENTITY - Hold the Database-Generated value for a PK that is an
+--                   IDENTITY column whenever an INSERT is attempted.
+--                   This is useful immediatly after the INSERT to get the
+--                   ID value:    SELECT @@IDENTITY
+--      @@ROWCOUNT - Holds the number of rows affected by the most recent
+--                   DML (INSERT/UPDATE/DELETE) statement
+--                   Useful in an IF statement to see if any rows were affected:
+--                   IF @@ROWCOUNT > 0
+--      @@ERROR    - Used to hold the error number when some DML statement fails.
+--                   A value of zero (0) means that there was no error.
+--                   Useful in an IF statement to see if any errors were generated:
+--                   IF @@ERROR <> 0
+--                       -- then there's a problem
 -- Other global variables can be found here:
 --  https://code.msdn.microsoft.com/Global-Variables-in-SQL-749688ef
-USE [A0X-School]
+USE [A04-School]
 GO
 SELECT DB_NAME() AS 'Active Database'
 GO
