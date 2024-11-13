@@ -106,6 +106,7 @@ AS
         FROM    Registration AS R
             INNER JOIN Course AS C ON R.CourseId = C.CourseId
         WHERE   Mark IS NOT NULL
+          AND   StudentId = @StudentId
 RETURN
 GO
 
@@ -252,7 +253,7 @@ CREATE PROCEDURE FindCourse
 AS
     SELECT  CourseId, CourseName
     FROM    Course
-    WHERE   CourseName LIKE '%programming%'
+    WHERE   CourseName LIKE '%' + @PartialName + '%'
 RETURN
 GO
 
