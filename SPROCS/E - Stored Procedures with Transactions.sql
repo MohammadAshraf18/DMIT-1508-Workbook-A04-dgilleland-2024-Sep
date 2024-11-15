@@ -1,7 +1,21 @@
 --  Stored Procedures (Sprocs)
 -- Demonstrate using Transactions in a Stored Procedure
+-- We use transactions in our SPROCS whenever we have two or more
+-- INSERT/UPDATE/DELETE statements that we need to process.
+-- The idea is that these modifications to our database need to
+-- succeed or fail as a group. We set up the the transaction by using the
+-- BEGIN TRANSACTION
+-- statement. This lets the db server know that the upcoming DML
+-- statements should be considered "temporary" until we are finished.
+-- We should check @@ERROR (and possibly @@ROWCOUNT) after each DML
+-- statement to see if there's a problem. If there is, we want to run
+-- ROLLBACK TRANSACTION
+-- in order to revert any prior changes to our database and end the transaction.
+-- If, after completing each INSERT/UPDATE/DELETE (with their error checks),
+-- there are no problems, then we finalize the transaction by running
+-- COMMIT TRANSACTION
 
-USE [A0X-School]
+USE [A04-School]
 GO
 SELECT DB_NAME() AS 'Active Database'
 GO
@@ -25,10 +39,10 @@ DROP PROCEDURE IF EXISTS TransferCourse
 GO
 CREATE PROCEDURE TransferCourse
     -- Parameters here
-    @StudentID      int,
-    @Semester       char(5),
-    @LeaveCourseID  char(7),
-    @EnterCourseID  char(7)
+    @StudentID      int,        -- Who is being transferred
+    @Semester       char(5),    -- When the semester transfer is occurring
+    @LeaveCourseID  char(7),    -- What course they are leaving
+    @EnterCourseID  char(7)     -- What course they are entering
 AS
     -- Body of procedure here
     -- Basic Validation - Parameter values are required
@@ -41,7 +55,6 @@ AS
         -- Begin Transaction
         BEGIN TRANSACTION   -- Means that any insert/update/delete is "temporary" until committed
         -- Step 1) Withdraw the student from the first course
-        --PRINT('Update Registration to set WithdrawYN to Y')
         UPDATE Registration
            SET WithdrawYN = 'Y'
         WHERE  StudentID = @StudentID     -- for the correct student
@@ -51,14 +64,12 @@ AS
         --         Check for error/rowcount
         IF @@ERROR <> 0 OR @@ROWCOUNT = 0
         BEGIN
-            --PRINT('RAISERROR + ROLLBACK')
             RAISERROR('Unable to withdraw student', 16, 1)
             ROLLBACK TRANSACTION -- reverses the "temporary" changes to the database and closes the transaction
         END
         ELSE
         BEGIN
             -- Step 2) Enroll the student in the second course
-            --PRINT('Insert Registration to add student')
             INSERT INTO Registration(StudentID, CourseId, Semester)
             VALUES (@StudentID, @EnterCourseID, @Semester)
             --         Check for error/rowcount
@@ -66,13 +77,11 @@ AS
             -- we have to check them immediately after our insert/update/delete
             IF @@ERROR <> 0 OR @@ROWCOUNT = 0 -- Do our check for errors after each I/U/D
             BEGIN
-                --PRINT('RAISERROR + ROLLBACK')
                 RAISERROR('Unable to transfer student to new course', 16, 1)
                 ROLLBACK TRANSACTION
             END
             ELSE
             BEGIN
-                --PRINT('COMMIT TRANSACTION')
                 COMMIT TRANSACTION -- Make the changes permanent on the database
             END
         END
@@ -85,6 +94,12 @@ GO
 --    - Delete of rows in the Activity table
 --    - Delete of rows in the Club table
 -- TODO: Student Answer Here
+-- sp_help Club
+CREATE OR ALTER PROCEDURE DissolveClub
+    @ClubId     varchar(10)
+AS
+
+RETURN
 
 
 -- 3. Add a stored procedure called AdjustMarks that takes in a course ID. The procedure should adjust the marks of all students for that course by increasing the mark by 10%. Be sure that nobody gets a mark over 100%.
