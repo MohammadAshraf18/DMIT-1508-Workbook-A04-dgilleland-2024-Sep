@@ -98,9 +98,52 @@ GO
 CREATE OR ALTER PROCEDURE DissolveClub
     @ClubId     varchar(10)
 AS
-
+--  0) NULL CHECK
+    IF @ClubId IS NULL
+    BEGIN
+        RAISERROR('ClubID is required', 16, 1)
+    END
+    ELSE
+    BEGIN
+        -- Start the transaction
+        BEGIN TRANSACTION
+        --  1) Delete of rows in the Activity table
+        DELETE FROM Activity
+        WHERE  ClubId = @ClubId
+        --  1.1) check for errors
+        IF @@ERROR <> 0
+        BEGIN
+            RAISERROR('Unable to remove members from the club', 16, 1)
+            ROLLBACK TRANSACTION
+        END
+        ELSE
+        BEGIN
+            --  2) Delete of rows in the Club table
+            DELETE FROM Club
+            WHERE  ClubId = @ClubId
+            IF @@ERROR <> 0 OR @@ROWCOUNT = 0
+            BEGIN
+                RAISERROR('Unable to delete the club', 16, 1)
+                ROLLBACK TRANSACTION
+            END
+            ELSE
+            BEGIN
+                COMMIT TRANSACTION
+            END
+        END
+    END
 RETURN
 
+
+-- How would you test this SPROC?
+-- First, I need to look at the db for sample data
+-- SELECT * FROM CLUB SELECT * FROM ACTIVITY
+-- Do a test with good data
+-- ACM club has some members, and the DBTG club doesn't have members
+EXEC DissolveClub 'ACM'
+EXEC DissolveClub 'DBTG'
+-- Also test our "unhappy paths"
+EXEC DissolveClub 'DGIMFT'
 
 -- 3. Add a stored procedure called AdjustMarks that takes in a course ID. The procedure should adjust the marks of all students for that course by increasing the mark by 10%. Be sure that nobody gets a mark over 100%.
 GO
