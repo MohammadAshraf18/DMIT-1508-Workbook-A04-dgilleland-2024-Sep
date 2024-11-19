@@ -98,7 +98,7 @@ GO
 CREATE OR ALTER PROCEDURE DissolveClub
     @ClubId     varchar(10)
 AS
---  0) NULL CHECK
+    --  0) NULL CHECK
     IF @ClubId IS NULL
     BEGIN
         RAISERROR('ClubID is required', 16, 1)
@@ -145,13 +145,28 @@ EXEC DissolveClub 'DBTG'
 -- Also test our "unhappy paths"
 EXEC DissolveClub 'DGIMFT'
 
+/* Some commentary on Transactions:
+    - Not every stored procedure needs transactions. (Don't use them unless required)
+    - Only use transactions if you have 2 or more of any combination of INSERT/UPDATE/DELETE statements in your sproc
+    - The rationale for having transactions is for multiple INSERT/UPDATE/DELETE statements to succeed or fail as a group
+    - Transactions must begin with the BEGIN TRANSACTION statement
+    - ALWAYS do a check for errors after your INSERT/UPDATE/DELETE
+        - If there is an error/problem, then RAISERROR() and ROLLBACK TRANSACTION
+        - ELSE continue with the next step
+    - The final ELSE block should have a COMMIT TRANSACTION
+ */
+
 -- 3. Add a stored procedure called AdjustMarks that takes in a course ID. The procedure should adjust the marks of all students for that course by increasing the mark by 10%. Be sure that nobody gets a mark over 100%.
+--      - We're doing UPDATEs to the Registration table for the Mark column
+--      - We need two updates: one for those whose marks should be 100%, and one for all the other marks
+--          - e.g.: someone with a 91% or 94% mark would just get the final mark of 100%
+--          -       someone with a 60% gets a 10% increase 
 GO
 DROP PROCEDURE IF EXISTS AdjustMarks
 GO
 CREATE PROCEDURE AdjustMarks
     -- Parameters here
-    @CourseID   char(7)
+    @CourseID   char(7)     -- the data type should match the CourseID from Registration
 AS
     -- Body of procedure here
     -- Step 0) Validation
@@ -162,32 +177,30 @@ AS
     ELSE
     BEGIN
         BEGIN TRANSACTION -- Don't forget this....
+
         -- Step 1) Deal with those who "could" get 100%+ by just giving them 100%
-        -- You can use PRINT() statements temporarily as a way to see what stage/step is run when you test the SPROC
-	-- BUT you must REMEMBER TO REMOVE THE PRINT STATEMENTS in your final version of the stored procedure
-        PRINT('Step 1 - Update Registration...') -- Will output in the messages window
         UPDATE Registration
            SET Mark = 100            -- the max mark possible
         WHERE  CourseId = @CourseID
           AND  Mark * 1.1 > 100      -- whereever adding 10% would give more than 100% of a final mark
-        IF @@ERROR > 0 -- Errors only - it's ok to have zero rows affected
+
+        IF @@ERROR <> 0 -- Errors only - it's ok to have zero rows affected
         BEGIN
-            PRINT('RAISERROR + ROLLBACK')
+            -- Report that there was a problem
             RAISERROR('Problem updating marks', 16, 1)
+            -- Undo any changes and end the transaction
             ROLLBACK TRANSACTION
         END
         ELSE
         BEGIN
             -- Step 2) Raise all the other marks
-            PRINT('Step 2 - Update Registration...')
             UPDATE Registration
-               SET Mark = Mark * 1.1
+               SET Mark = Mark * 1.1    -- a 10% increase from their previous mark
             WHERE  CourseId = @CourseID
               AND  Mark * 1.1 <= 100
 
             IF @@ERROR > 0 -- Errors only
             BEGIN
-                PRINT('RAISERROR + ROLLBACK')
                 RAISERROR('Problem updating marks', 16, 1)
                 ROLLBACK TRANSACTION
             END
@@ -551,3 +564,55 @@ GO
 -- 10.b. Create a stored procedure called DeletePayment that has a parameter identifying the payment ID and the student ID. This stored procedure must first record the specified payment's data in the PaymentHistory before removing the payment from the Payment table.
 -- TODO: Student Answer Here
 
+-- 11. (Interactive question) The school has to cancel a certain course because no instructors are available to teach the course as originally planned. As such, we need to remove all registrations for that course and refund the amount on the students' Balance Owing. Call the procedure CancelCourseOffering.
+GO
+CREATE OR ALTER PROCEDURE CancelCourseOffering
+    @CourseID   char(7),
+    @Semester   char(5)
+AS
+    -- 0) Check for nulls
+    IF @CourseID IS NULL OR @Semester IS NULL
+    BEGIN
+        RAISERROR('CourseID and Semster are both required parameters', 16, 1)
+    END
+    ELSE    -- no problem, so continue on
+    BEGIN
+        -- Start the transaction
+        BEGIN TRANSACTION
+
+        -- A) Refund the course cost for each of the registered students
+        DECLARE @Refund decimal(6,2) -- match my database
+        SET @Refund = (SELECT CourseCost FROM Course WHERE CourseId = @CourseID)
+
+        UPDATE  Student
+        SET     BalanceOwing = BalanceOwing - @Refund
+        WHERE   StudentID IN (SELECT  StudentID
+                              FROM    Registration
+                              WHERE   CourseId = @CourseID
+                                AND   Semester = @Semester)
+
+        -- check if there was a problem
+        IF @@ERROR <> 0
+        BEGIN
+            RAISERROR('Unable to refund student tuition', 16, 1)
+            ROLLBACK TRANSACTION -- end the temporary changes
+        END
+        ELSE
+        BEGIN
+            -- B) Remove the registrations for that course offering
+            DELETE FROM Registration
+            WHERE  CourseId = @CourseID AND Semester = @Semester
+
+            IF @@ERROR <> 0
+            BEGIN
+                RAISERROR('Unable to cancel the course', 16, 1)
+                ROLLBACK TRANSACTION
+            END
+            ELSE
+            BEGIN
+                -- Make the changes permanent
+                COMMIT TRANSACTION
+            END
+        END
+    END
+GO
