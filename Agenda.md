@@ -285,17 +285,17 @@
 
 ### Nov 19
 
-- [ ] Stored Procedures
+- [ ] Stored Procedures - *Last of Transaction samples*
 
 
 ### Nov 20
 
-- [ ] Stored Procedures
+- [ ] Answers to Quiz 2
 
 
 ### Nov 22
 
-- [ ] Stored Procedures
+- [ ] *Lab Time*
 
 ----
 
