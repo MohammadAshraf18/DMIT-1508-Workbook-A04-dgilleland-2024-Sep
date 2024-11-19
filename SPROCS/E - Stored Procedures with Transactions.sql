@@ -481,26 +481,34 @@ AS
 RETURN
 GO
 
+/* Archiving Data
+    Sometimes we want to "clean up" our tables for the current time period
+    and store it  or transfer it to some kind of "Archived" set of tables.
+    This archiving process typically involves doing an INSERT into our
+    archive table(s) and doing a DELETE from our "regular" tables
+ */
+
 -- 8. Create a stored procedure called ArchiveStudentGrades that will accept a year and will archive all grade records from that year from the grade table to an ArchiveGrade table. Copy all the appropriate records from the grade table to the ArchiveGrade table and delete them from the grade table. The ArchiveGrade table will have the same definition as the grade table but will not have any constraints.
 GO
 DROP TABLE IF EXISTS ArchiveGrade
 GO
 CREATE TABLE ArchiveGrade
 (
-    StudentID        int,
-    CourseId        char (7),
-    Semester        char (5),
-    Mark            decimal(5,2),
-    WithdrawYN        char (1),
-    StaffID            smallint
+    StudentID           int,
+    CourseId            char (7),
+    Semester            char (5),
+    Mark                decimal(5,2),
+    WithdrawYN          char (1),
+    StaffID             smallint
 )
 GO
 
 DROP PROCEDURE IF EXISTS ArchiveStudentGrades
 GO
-
+-- In our Registration Table, the semester is noted as a string where
+-- the year is followed by a character of 'S' for September and 'J' for January
 CREATE PROCEDURE ArchiveStudentGrades
-    @RecordYear char(4)
+    @RecordYear char(4)     -- The actual year (as a string)
 AS
     IF @RecordYear IS NULL
     BEGIN
@@ -509,10 +517,13 @@ AS
     ELSE
     BEGIN
         BEGIN TRANSACTION
+
         INSERT INTO ArchiveGrade (StudentID, CourseID, Semester, Mark, WithdrawYN, StaffID)
         SELECT  StudentID, CourseID, Semester, Mark, WithdrawYN, StaffID
         FROM    Registration
         WHERE   LEFT(Semester, 4) = @RecordYear
+        --      \__Year portion_/
+
         IF @@ERROR <> 0 
         BEGIN
             RAISERROR ('Archive failed', 16, 1)
