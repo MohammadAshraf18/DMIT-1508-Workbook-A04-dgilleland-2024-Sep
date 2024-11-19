@@ -87,7 +87,7 @@ CREATE PROCEDURE ListStaff
 AS
     SELECT  FirstName + '  ' + LastName AS 'StaffMember', PositionDescription
     FROM    Staff AS S
-        INNER JOIN Position AS P ON S.PositionID = p.PositionID
+        LEFT OUTER JOIN Position AS P ON S.PositionID = p.PositionID
 RETURN
 GO
 
