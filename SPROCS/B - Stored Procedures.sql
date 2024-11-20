@@ -208,11 +208,17 @@ AS
             --  \____ Will return FALSE when there are no rows, TRUE otherwise ___/
         RAISERROR('That student id does not exist', 16, 1)
     ELSE 
-        DELETE Student
-
+        DELETE FROM Activity 
+        WHERE StudentId = @StudentId
+        AND ClubId = @ClubId
 RETURN
 GO
 
+--SELECT * FROM Student
+--SELECT * FROM Club
+--SELECT * FROM Activity
+
+--EXEC RemoveFromClub 
 -- Query-based Stored Procedures
 -- 6. Create a stored procedure that will display all the staff and their position in the school.
 --    Show the full name of the staff member and the description of their position.
