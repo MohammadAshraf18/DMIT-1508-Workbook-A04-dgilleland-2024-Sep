@@ -81,7 +81,24 @@ WHERE   LastName LIKE 'S%'
 --      Do NOT assume that the '%' is part of the value in the parameter variable;
 --      Your solution should concatenate the @PartialName with the wildcard.
 
+GO
+DROP PROCEDURE IF EXISTS Snames
+GO
+CREATE PROCEDURE Snames
+    @PartialName varchar(35)
+AS
+    IF @PartialName IS NULL
+    RAISERROR('Please Enter LastName', 16, 1)
+    ELSE
+    SELECT  FirstName, LastName
+FROM    Student
+WHERE   LastName LIKE 'S%'
+AND     @PartialName = LastName
+RETURN
+GO
 
+--EXEC Snames 
+--SELECT * FROM Student
 /* ----------------------------------------------------- */
 
 -- 4.   Selects the CourseID's and Coursenames where the CourseName contains the word 'programming'.
