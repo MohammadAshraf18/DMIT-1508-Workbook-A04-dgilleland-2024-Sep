@@ -92,12 +92,11 @@ AS
     ELSE
     SELECT  FirstName, LastName
 FROM    Student
-WHERE   LastName LIKE 'S%'
-AND     @PartialName = LastName
+WHERE  LastName LIKE @PartialName + '%'
 RETURN
 GO
-
---EXEC Snames 
+--EXEC Snames S
+--EXEC Snames L
 --SELECT * FROM Student
 /* ----------------------------------------------------- */
 
