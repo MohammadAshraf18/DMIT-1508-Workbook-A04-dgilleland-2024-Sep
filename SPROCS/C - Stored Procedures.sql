@@ -109,17 +109,18 @@ WHERE   CourseName LIKE '%programming%'
 --      Do NOT assume that the '%' is part of the value in the parameter variable.
 
 GO
-DROP PROCEDURE IF EXISTS ProgrammingStudents
+DROP PROCEDURE IF EXISTS FindCourse
 GO
-CREATE PROCEDURE ProgrammingStudents
+CREATE PROCEDURE FindCourse
     @PartialName varchar(35)
 AS
     SELECT  CourseId, CourseName
 FROM    Course
-WHERE   CourseName LIKE @PartialName 
+WHERE   CourseName LIKE '%' + @PartialName + '%'
 RETURN
 GO
 
+--EXEC FindCourse programming  
 
 /* ----------------------------------------------------- */
 
