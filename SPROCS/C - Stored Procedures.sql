@@ -20,12 +20,12 @@ GO
 DROP PROCEDURE IF EXISTS ListStudentMarksByRange
 GO
 CREATE PROCEDURE ListStudentMarksByRange
-    @Upper      decimal,
-    @Lower      decimal
+    @lower      decimal,
+    @upper      decimal
 AS
   SELECT  StudentID, CourseId, Mark
   FROM    Registration
-  WHERE   Mark BETWEEN @Lower AND @Upper
+  WHERE   Mark BETWEEN @lower AND @upper
     
 RETURN
 GO
