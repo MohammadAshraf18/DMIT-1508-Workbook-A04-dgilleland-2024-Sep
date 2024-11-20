@@ -171,6 +171,7 @@ CREATE PROCEDURE StaffByPosition
 AS
 IF @PartialName IS NULL
 RAISERROR('Please Enter Field', 16, 1)
+ELSE
     SELECT  FirstName + ' ' + LastName AS 'StaffFullName'
 FROM    Position P
     INNER JOIN Staff S ON S.PositionID = P.PositionID
