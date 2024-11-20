@@ -1,0 +1,13 @@
+stored procedures: 
+this is the basic format
+
+GO
+DROP PROCEDURE IF EXISTS SprocName
+GO
+CREATE PROCEDURE SprocName
+    -- Parameters here
+AS
+    -- Body of procedure here
+RETURN
+GO
+
