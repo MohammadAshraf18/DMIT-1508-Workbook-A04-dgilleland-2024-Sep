@@ -227,6 +227,16 @@ GO
 --    Show the full name of the staff member and the description of their position.
 -- TODO: Student Answer Here
 
+GO
+DROP PROCEDURE IF EXISTS StaffInfo
+GO
+CREATE PROCEDURE StaffInfo
+    -- Parameters here
+AS
+    -- Body of procedure here
+RETURN
+GO
+
 -- 7. Display all the final course marks for a given student. Include the name and number of the course
 --    along with the student's mark.
 -- TODO: Student Answer Here
