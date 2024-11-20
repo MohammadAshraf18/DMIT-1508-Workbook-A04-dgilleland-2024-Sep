@@ -163,12 +163,16 @@ WHERE   DateReleased IS NULL
 --      Place this in a stored procedure called StaffByPosition
 
 GO
-DROP PROCEDURE IF EXISTS SprocName
+DROP PROCEDURE IF EXISTS StaffByPosition 
 GO
-CREATE PROCEDURE SprocName
+CREATE PROCEDURE StaffByPosition
     -- Parameters here
 AS
-    -- Body of procedure here
+    SELECT  FirstName + ' ' + LastName AS 'StaffFullName'
+FROM    Position P
+    INNER JOIN Staff S ON S.PositionID = P.PositionID
+WHERE   DateReleased IS NULL
+  AND   PositionDescription = 'Instructor'
 RETURN
 GO
 
