@@ -167,6 +167,7 @@ DROP PROCEDURE IF EXISTS StaffByPosition
 GO
 CREATE PROCEDURE StaffByPosition
     -- Parameters here
+    @PartialName
 AS
     SELECT  FirstName + ' ' + LastName AS 'StaffFullName'
 FROM    Position P
