@@ -219,9 +219,21 @@ GO
 
 --6. Create a stored procedure called "Provinces" to list all the students provinces.
 -- TODO: Student Answer Here
-
+GO
+DROP PROCEDURE IF EXISTS Provinces
+GO
+CREATE PROCEDURE Provinces
+    -- Parameters here
+AS
+SELECT  DISTINCT Province
+    FROM    Student
+    -- Body of procedure here
+RETURN
+GO
 --7. OK, question 6 was ridiculously simple and serves no purpose. Lets remove that stored procedure from the database.
 -- TODO: Student Answer Here
+DROP PROCEDURE IF EXISTS Provinces
+GO
 
 --8. Create a stored procedure called StudentPaymentTypes that lists all the student names and their payment types. Ensure all the student names are listed, including those who have not yet made a payment.
 -- TODO: Student Answer Here
