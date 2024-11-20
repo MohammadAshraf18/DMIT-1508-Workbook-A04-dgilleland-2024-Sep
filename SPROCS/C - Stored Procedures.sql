@@ -135,7 +135,22 @@ HAVING COUNT(PaymentType.PaymentTypeID) >= ALL (SELECT COUNT(PaymentTypeID)
                                                 GROUP BY PaymentTypeID)
 --      Place this in a stored procedure called MostFrequentPaymentTypes.
 
-
+GO
+DROP PROCEDURE IF EXISTS MostFrequentPaymentTypes
+GO
+CREATE PROCEDURE MostFrequentPaymentTypes
+    -- Parameters here
+AS
+    SELECT PaymentTypeDescription
+FROM   Payment 
+    INNER JOIN PaymentType 
+        ON Payment.PaymentTypeID = PaymentType.PaymentTypeID
+GROUP BY PaymentTypeDescription 
+HAVING COUNT(PaymentType.PaymentTypeID) >= ALL (SELECT COUNT(PaymentTypeID)
+                                                FROM Payment 
+                                                GROUP BY PaymentTypeID)
+RETURN
+GO
 
 /* ----------------------------------------------------- */
 
@@ -146,6 +161,16 @@ FROM    Position P
 WHERE   DateReleased IS NULL
   AND   PositionDescription = 'Instructor'
 --      Place this in a stored procedure called StaffByPosition
+
+GO
+DROP PROCEDURE IF EXISTS SprocName
+GO
+CREATE PROCEDURE SprocName
+    -- Parameters here
+AS
+    -- Body of procedure here
+RETURN
+GO
 
 /* ----------------------------------------------------- */
 
@@ -158,4 +183,14 @@ WHERE   DateReleased IS NULL
   AND   CourseId = 'DMIT101'
 --      This select should also accommodate inputs with wildcards. (Change = to LIKE)
 --      Place this in a stored procedure called StaffByCourseExperience
+
+GO
+DROP PROCEDURE IF EXISTS SprocName
+GO
+CREATE PROCEDURE SprocName
+    -- Parameters here
+AS
+    -- Body of procedure here
+RETURN
+GO
 
