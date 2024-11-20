@@ -108,6 +108,18 @@ WHERE   CourseName LIKE '%programming%'
 --      The parameter should be called @PartialName.
 --      Do NOT assume that the '%' is part of the value in the parameter variable.
 
+GO
+DROP PROCEDURE IF EXISTS ProgrammingStudents
+GO
+CREATE PROCEDURE ProgrammingStudents
+    @PartialName varchar(35)
+AS
+    SELECT  CourseId, CourseName
+FROM    Course
+WHERE   CourseName LIKE @PartialName 
+RETURN
+GO
+
 
 /* ----------------------------------------------------- */
 
