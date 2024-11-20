@@ -233,15 +233,30 @@ GO
 CREATE PROCEDURE StaffInfo
    
 AS
-    SELECT FirstName + ' ' LastName AS 'Staff Full Name', PositionDescription
+    SELECT FirstName + '  ' + LastName AS 'Staff Full Name', PositionDescription        
     FROM Staff AS S 
     LEFT Outer JOIN Position AS P ON S.PositionID= P.PositionID
 RETURN
 GO
 
+EXEC StaffInfo
+
 -- 7. Display all the final course marks for a given student. Include the name and number of the course
 --    along with the student's mark.
 -- TODO: Student Answer Here
+
+GO
+DROP PROCEDURE IF EXISTS FinalMarks
+GO
+CREATE PROCEDURE FinalMarks
+    -- Parameters here
+    @StudentID       int
+AS
+    SELECT CourseID, CourseName, Mark
+    FROM Course AS C
+RETURN
+GO
+
 
 -- 8. Display the students that are enrolled in a given course on a given semester.
 --    Display the course name and the student's full name and mark.
