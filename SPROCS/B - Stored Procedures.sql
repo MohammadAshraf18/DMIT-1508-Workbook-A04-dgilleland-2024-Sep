@@ -284,8 +284,8 @@ ELSE
     FROM Student AS S 
     INNER JOIN Registration AS R ON S.StudentID=R.StudentID
     INNER JOIN Course AS C ON R.CourseId=C.CourseId
-    WHERE @CourseId = CourseId
-    AND   @Semester = 
+    WHERE C.CourseId = @CourseId
+    AND   Semester = @Semester
 
 RETURN
 GO
