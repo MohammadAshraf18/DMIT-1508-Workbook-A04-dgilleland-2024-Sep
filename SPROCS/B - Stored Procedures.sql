@@ -302,3 +302,5 @@ AS
     WHERE   BalanceOwing > 0
 RETURN
 GO
+
+--EXEC ListOutstandingBalances
