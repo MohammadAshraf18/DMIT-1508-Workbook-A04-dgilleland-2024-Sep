@@ -195,6 +195,24 @@ GO
 -- 5. Create a stored procedure that will remove a student from a club. Call it RemoveFromClub.
 -- TODO: Student Answer Here
 
+GO
+DROP PROCEDURE IF EXISTS RemoveFromClub
+GO
+CREATE PROCEDURE RemoveFromClub
+    @StudentId      int,
+    @ClubId         varchar(10)
+AS
+    IF @StudentId IS NULL OR @ClubId IS NULL
+    RAISERROR('Please enter all paramaters', 16, 1)
+    ELSE IF NOT EXISTS (SELECT StudentID FROM Student WHERE StudentID = @StudentId)
+            --  \____ Will return FALSE when there are no rows, TRUE otherwise ___/
+        RAISERROR('That student id does not exist', 16, 1)
+    ELSE 
+        DELETE Student
+
+RETURN
+GO
+
 -- Query-based Stored Procedures
 -- 6. Create a stored procedure that will display all the staff and their position in the school.
 --    Show the full name of the staff member and the description of their position.
