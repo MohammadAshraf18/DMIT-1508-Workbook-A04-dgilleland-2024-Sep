@@ -252,8 +252,9 @@ CREATE PROCEDURE FinalMarks
     -- Parameters here
     @StudentID       int
 AS
-    SELECT CourseID, CourseName, Mark
+    SELECT C.CourseId, C.CourseName, R.Mark
     FROM Course AS C
+    INNER JOIN Registration AS R ON C.CourseId=R.CourseId
 RETURN
 GO
 
