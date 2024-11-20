@@ -30,7 +30,16 @@ AS
 RETURN
 GO
 
---EXEC ListStudentMarksByRange
+---- Testing
+--  Good inputs
+EXEC ListStudentMarksByRange 70, 80
+--  Bad inputs
+EXEC ListStudentMarksByRange 80, 70
+EXEC ListStudentMarksByRange 70, NULL
+EXEC ListStudentMarksByRange NULL, 80
+EXEC ListStudentMarksByRange NULL, NULL
+EXEC ListStudentMarksByRange -5, 80
+EXEC ListStudentMarksByRange 70, 101 -- Specifically checking the upper limit
 /* ----------------------------------------------------- */
 
 -- 2.   Selects the Staff full names and the Course ID's they teach.
