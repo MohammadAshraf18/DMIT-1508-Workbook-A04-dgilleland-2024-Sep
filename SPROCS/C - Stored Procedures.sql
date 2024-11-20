@@ -52,6 +52,22 @@ FROM    Staff S
 ORDER BY 'Staff Full Name', CourseId
 --      Place this in a stored procedure called CourseInstructors.
 
+GO
+DROP PROCEDURE IF EXISTS CourseInstructors
+GO
+CREATE PROCEDURE CourseInstructors
+    -- Parameters here
+AS
+    SELECT  DISTINCT -- The DISTINCT keyword will remove duplate rows from the results
+        FirstName + ' ' + LastName AS 'Staff Full Name',
+        CourseId
+FROM    Staff S
+    INNER JOIN Registration R
+        ON S.StaffID = R.StaffID
+ORDER BY 'Staff Full Name', CourseId
+RETURN
+GO
+
 
 /* ----------------------------------------------------- */
 
