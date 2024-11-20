@@ -231,9 +231,11 @@ GO
 DROP PROCEDURE IF EXISTS StaffInfo
 GO
 CREATE PROCEDURE StaffInfo
-    @StaffId     int
+   
 AS
-    -- Body of procedure here
+    SELECT FirstName + ' ' LastName AS 'Staff Full Name', PositionDescription
+    FROM Staff AS S 
+    LEFT Outer JOIN Position AS P ON S.PositionID= P.PositionID
 RETURN
 GO
 
