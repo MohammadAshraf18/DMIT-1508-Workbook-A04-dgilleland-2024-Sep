@@ -61,8 +61,8 @@ AS
     SELECT  DISTINCT -- The DISTINCT keyword will remove duplate rows from the results
         FirstName + ' ' + LastName AS 'Staff Full Name',
         CourseId
-FROM    Staff S
-    INNER JOIN Registration R
+FROM    Staff AS S
+    INNER JOIN Registration AS R
         ON S.StaffID = R.StaffID
 ORDER BY 'Staff Full Name', CourseId
 RETURN
