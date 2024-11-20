@@ -16,7 +16,21 @@ WHERE   Mark BETWEEN 70 AND 80 -- BETWEEN is inclusive
 --      one for the upper value and one for the lower value.
 --      Call the stored procedure ListStudentMarksByRange
 
+GO
+DROP PROCEDURE IF EXISTS ListStudentMarksByRange
+GO
+CREATE PROCEDURE ListStudentMarksByRange
+    @Upper      decimal,
+    @Lower      decimal
+AS
+  SELECT  StudentID, CourseId, Mark
+  FROM    Registration
+  WHERE   Mark BETWEEN @Lower AND @Upper
+    
+RETURN
+GO
 
+--EXEC ListStudentMarksByRange
 /* ----------------------------------------------------- */
 
 -- 2.   Selects the Staff full names and the Course ID's they teach.
