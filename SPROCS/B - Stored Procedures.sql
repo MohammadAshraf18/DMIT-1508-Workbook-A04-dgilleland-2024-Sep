@@ -218,7 +218,7 @@ GO
 --SELECT * FROM Club
 --SELECT * FROM Activity
 
---EXEC RemoveFromClub 
+--EXEC RemoveFromClub 200, CSS
 -- Query-based Stored Procedures
 -- 6. Create a stored procedure that will display all the staff and their position in the school.
 --    Show the full name of the staff member and the description of their position.
