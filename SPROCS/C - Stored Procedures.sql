@@ -44,12 +44,12 @@ EXEC ListStudentMarksByRange 70, 101 -- Specifically checking the upper limit
 
 -- 2.   Selects the Staff full names and the Course ID's they teach.
 SELECT  DISTINCT -- The DISTINCT keyword will remove duplate rows from the results
-        FirstName + ' ' + LastName AS 'Staff Full Name',
+        FirstName + ' ' + LastName AS 'StaffFullName',
         CourseId
 FROM    Staff S
     INNER JOIN Registration R
         ON S.StaffID = R.StaffID
-ORDER BY 'Staff Full Name', CourseId
+ORDER BY StaffFullName, CourseId
 --      Place this in a stored procedure called CourseInstructors.
 
 GO
