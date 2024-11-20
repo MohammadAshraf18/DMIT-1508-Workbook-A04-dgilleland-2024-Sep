@@ -231,7 +231,7 @@ GO
 DROP PROCEDURE IF EXISTS StaffInfo
 GO
 CREATE PROCEDURE StaffInfo
-    -- Parameters here
+    @StaffId     int
 AS
     -- Body of procedure here
 RETURN
