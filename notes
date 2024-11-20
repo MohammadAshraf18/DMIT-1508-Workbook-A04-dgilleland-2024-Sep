@@ -15,3 +15,5 @@ GO
 --All variable names start with a @
 --Declare a variable
 --DECLARE @Cost money
+
+-- "<>" is the not equal to operator basically null
