@@ -59,7 +59,7 @@ CREATE PROCEDURE CourseInstructors
     -- Parameters here
 AS
     SELECT  DISTINCT -- The DISTINCT keyword will remove duplate rows from the results
-        FirstName + ' ' + LastName AS 'Staff Full Name',
+        S.FirstName + ' ' + S.LastName AS 'Staff Full Name',
         CourseId
 FROM    Staff AS S
     INNER JOIN Registration AS R
