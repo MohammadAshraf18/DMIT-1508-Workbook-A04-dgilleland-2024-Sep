@@ -169,14 +169,18 @@ CREATE PROCEDURE StaffByPosition
     -- Parameters here
     @PartialName   varchar(30)
 AS
+IF @PartialName IS NULL
+RAISERROR('Please Enter Field', 16, 1)
     SELECT  FirstName + ' ' + LastName AS 'StaffFullName'
 FROM    Position P
     INNER JOIN Staff S ON S.PositionID = P.PositionID
 WHERE   DateReleased IS NULL
-  AND   PositionDescription = 'Instructor'
+  AND   PositionDescription LIKE '%' + @PartialName + '%'
 RETURN
 GO
 
+--EXEC StaffByPosition Instuctor
+--EXEC StaffByPosition NULL 
 /* ----------------------------------------------------- */
 
 -- 7.   Selects the staff members that have taught a particular course (e.g.: 'DMIT101').
