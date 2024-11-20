@@ -254,6 +254,7 @@ CREATE PROCEDURE FinalMarks
 AS
     IF @StudentID IS NULL
     RAISERROR('Please Enter a StudentID', 16, 1)
+ELSE
     SELECT C.CourseId, C.CourseName, R.Mark
     FROM Course AS C
     INNER JOIN Registration AS R ON C.CourseId=R.CourseId
@@ -268,7 +269,26 @@ GO
 --    Display the course name and the student's full name and mark.
 -- TODO: Student Answer Here
 
+GO
+DROP PROCEDURE IF EXISTS DisplayStudent
+GO
+CREATE PROCEDURE DisplayStudent
+    -- Parameters here
+    @CourseId     char(7),
+    @Semester     char(5)
+AS
+    IF @CourseId IS NULL OR @Semester IS NULL
+    RAISERROR('Please Enter Required Fields', 16, 1)
+ELSE
+    SELECT CourseName, FirstName + ' ' + LastName AS 'Student Name', Mark
+    FROM Student AS S 
+    INNER JOIN Registration AS R ON S.StudentID=R.StudentID
+    INNER JOIN Course AS C ON R.CourseId=C.CourseId
+    WHERE @CourseId = CourseId
+    AND   @Semester = 
 
+RETURN
+GO
 
 
 -- 9. The school is running out of money! Find out who still owes money for the courses they are enrolled in.
