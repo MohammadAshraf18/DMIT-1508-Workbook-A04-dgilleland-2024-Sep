@@ -11,3 +11,7 @@ AS
 RETURN
 GO
 
+--EXEC is our tool to execute the function we want
+--All variable names start with a @
+--Declare a variable
+--DECLARE @Cost money
