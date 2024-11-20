@@ -293,4 +293,12 @@ GO
 
 -- 9. The school is running out of money! Find out who still owes money for the courses they are enrolled in.
 -- TODO: Student Answer Here 
-
+DROP PROCEDURE IF EXISTS ListOutstandingBalances
+GO
+CREATE PROCEDURE ListOutstandingBalances
+AS
+    SELECT  FirstName + ' ' + LastName AS 'Student', BalanceOwing
+    FROM    Student
+    WHERE   BalanceOwing > 0
+RETURN
+GO
