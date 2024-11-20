@@ -68,6 +68,7 @@ ORDER BY 'Staff Full Name', CourseId
 RETURN
 GO
 
+--EXEC CourseInstructors
 
 /* ----------------------------------------------------- */
 
