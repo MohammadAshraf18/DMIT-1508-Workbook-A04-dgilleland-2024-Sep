@@ -252,9 +252,14 @@ CREATE PROCEDURE FinalMarks
     -- Parameters here
     @StudentID       int
 AS
+    IF @StudentID IS NULL
+    RAISERROR('Please Enter a StudentID', 16, 1)
     SELECT C.CourseId, C.CourseName, R.Mark
     FROM Course AS C
     INNER JOIN Registration AS R ON C.CourseId=R.CourseId
+    WHERE Mark IS NOT NULL
+    AND @StudentID = StudentID
+
 RETURN
 GO
 
