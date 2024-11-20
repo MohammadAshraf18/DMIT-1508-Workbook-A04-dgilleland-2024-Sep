@@ -135,6 +135,8 @@ HAVING COUNT(PaymentType.PaymentTypeID) >= ALL (SELECT COUNT(PaymentTypeID)
                                                 GROUP BY PaymentTypeID)
 --      Place this in a stored procedure called MostFrequentPaymentTypes.
 
+
+
 /* ----------------------------------------------------- */
 
 -- 6.   Selects the current staff members that are in a particular job position.
