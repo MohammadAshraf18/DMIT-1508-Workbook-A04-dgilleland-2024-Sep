@@ -162,16 +162,13 @@ WHERE   DateReleased IS NULL
   AND   PositionDescription = 'Instructor'
 --      Place this in a stored procedure called StaffByPosition
 
-GO
+
 DROP PROCEDURE IF EXISTS StaffByPosition 
 GO
 CREATE PROCEDURE StaffByPosition
     -- Parameters here
     @Description  varchar(50)
 AS
-IF @Description IS NULL
-RAISERROR('Please Enter Field', 16, 1)
-ELSE
     SELECT  FirstName + ' ' + LastName AS 'StaffFullName'
 FROM    Position P
     INNER JOIN Staff S ON S.PositionID = P.PositionID
