@@ -194,9 +194,9 @@ WHERE   DateReleased IS NULL
 --      Place this in a stored procedure called StaffByCourseExperience
 
 GO
-DROP PROCEDURE IF EXISTS SprocName
+DROP PROCEDURE IF EXISTS 
 GO
-CREATE PROCEDURE SprocName
+CREATE PROCEDURE 
     -- Parameters here
 AS
     -- Body of procedure here
