@@ -179,7 +179,7 @@ GO
 
 --SELECT * FROM Staff
 --SELECT * FROM Position
---EXEC StaffByPosition Instuctor
+--EXEC StaffByPosition 'Instuctor'
 --EXEC StaffByPosition NULL 
 /* ----------------------------------------------------- */
 
