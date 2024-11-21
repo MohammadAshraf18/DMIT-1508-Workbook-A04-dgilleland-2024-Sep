@@ -167,16 +167,16 @@ DROP PROCEDURE IF EXISTS StaffByPosition
 GO
 CREATE PROCEDURE StaffByPosition
     -- Parameters here
-    @PartialName   varchar(30)
+    @Description  varchar(50)
 AS
-IF @PartialName IS NULL
+IF @Description IS NULL
 RAISERROR('Please Enter Field', 16, 1)
 ELSE
     SELECT  FirstName + ' ' + LastName AS 'StaffFullName'
 FROM    Position P
     INNER JOIN Staff S ON S.PositionID = P.PositionID
 WHERE   DateReleased IS NULL
-  AND   PositionDescription LIKE '%' + @PartialName + '%'
+  AND   PositionDescription LIKE '%' + @Description + '%'
 RETURN
 GO
 
