@@ -176,7 +176,7 @@ ELSE
 FROM    Position P
     INNER JOIN Staff S ON S.PositionID = P.PositionID
 WHERE   DateReleased IS NULL
-  AND   PositionDescription LIKE '%' + @Description + '%'
+  AND   PositionDescription = @Description
 RETURN
 GO
 
