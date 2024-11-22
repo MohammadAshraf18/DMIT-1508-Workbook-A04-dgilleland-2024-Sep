@@ -213,12 +213,12 @@ EXEC RemoveClubMembership 'CSS' -- The second time this is run, there will be no
 -- TODO: Student Answer Here
 
 GO
-DROP PROCEDURE IF EXISTS SprocName
+DROP PROCEDURE IF EXISTS OverActiveMembers
 GO
-CREATE PROCEDURE SprocName
+CREATE PROCEDURE OverActiveMembers
     @ClubCount int
 AS
-    -- Body of procedure here
+    
 RETURN
 GO
 
