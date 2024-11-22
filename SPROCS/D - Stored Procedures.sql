@@ -212,6 +212,16 @@ EXEC RemoveClubMembership 'CSS' -- The second time this is run, there will be no
 --    (p.s. - You might want to make sure to add more members to more clubs, seeing as tests for the last question might remove a lot of club members....)
 -- TODO: Student Answer Here
 
+GO
+DROP PROCEDURE IF EXISTS SprocName
+GO
+CREATE PROCEDURE SprocName
+    @ClubCount int
+AS
+    -- Body of procedure here
+RETURN
+GO
+
 
 
 -- 5) Create a stored procedure called ListStudentsWithoutClubs that lists the full names of all students who are not active in a club.
