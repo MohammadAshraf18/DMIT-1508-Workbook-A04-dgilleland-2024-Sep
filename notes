@@ -17,3 +17,11 @@ GO
 --DECLARE @Cost money
 
 -- "<>" is the not equal to operator basically null
+
+
+
+            INSERT INTO Task (Description, CostPerHour)
+            VALUES (@Description, @CostPerHour)
+
+            
+            SELECT @@IDENTITY AS TaskCode
