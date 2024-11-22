@@ -194,12 +194,17 @@ WHERE   DateReleased IS NULL
 --      Place this in a stored procedure called StaffByCourseExperience
 
 GO
-DROP PROCEDURE IF EXISTS 
+DROP PROCEDURE IF EXISTS StaffByCourseExperience
 GO
-CREATE PROCEDURE 
-    -- Parameters here
+CREATE PROCEDURE StaffByCourseExperience
+    @CourseId    char(7)
 AS
-    -- Body of procedure here
+    SELECT  DISTINCT FirstName + ' ' + LastName AS 'StaffFullName',
+        CourseId
+FROM    Registration R
+    INNER JOIN Staff S ON S.StaffID = R.StaffID
+WHERE   DateReleased IS NULL
+  AND   CourseId LIKE '%' + @CourseId + '%'
 RETURN
 GO
 
