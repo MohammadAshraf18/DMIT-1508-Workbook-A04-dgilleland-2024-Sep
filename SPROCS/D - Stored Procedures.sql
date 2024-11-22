@@ -252,8 +252,17 @@ CREATE PROCEDURE LookupStudent
 AS
     IF @PartialLastName IS NULL OR 
      LEN(@PartialLastName) < 1
+     RAISERROR('ERROR Please Enter Field/ Enter More than 1 Characters', 16, 1)
+     ELSE
+        SELECT StudentID, FirstName, LastName
+        FROM Student
+        WHERE LastName LIKE '%' + @PartialLastName + '%'
 RETURN
 GO
+
+EXEC LookupStudent Woo
+EXEC LookupStudent 'oo'
+--SELECT * FROM Student
 
 -- 7) Create a stored procedure called AddPaymentType that takes in a description/name for the payment type and adds it to the PaymentType table. Be sure to prevent any duplicate payment types and also make sure the name of the pament type is at least 4 characters long. Return the PaymentTypeID that was generated for the inserted row.
 -- TODO: Student Answer Here
