@@ -227,7 +227,19 @@ GO
 -- 5) Create a stored procedure called ListStudentsWithoutClubs that lists the full names of all students who are not active in a club.
 -- TODO: Student Answer Here
 
+GO
+DROP PROCEDURE IF EXISTS ListStudentsWithoutClubs
+GO
+CREATE PROCEDURE ListStudentsWithoutClubs
+    
+AS
+    SELECT FirstName + ' ' + LastName AS 'Full Name'
+    FROM Student
+    WHERE StudentId NOT IN (SELECT DISTINCT StudentId FROM Activity)
+RETURN
+GO
 
+EXEC ListStudentsWithoutClubs
 
 -- 6) Create a stored procedure called LookupStudent that accepts a partial student last name and returns a list of all students whose last name includes the partial last name. Require at least 1 character in the supplied parameter. Return the student first and last name as well as their ID.
 -- TODO: Student Answer Here
