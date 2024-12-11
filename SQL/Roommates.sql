@@ -102,33 +102,3 @@ FROM    Rentals
 
 
 
-3. TR3: Record Rating Changes
-sql
-Copy code
-DROP TRIGGER IF EXISTS TR3
-GO
-
-CREATE TRIGGER TR3
-ON BookMeeting
-FOR UPDATE
-AS
-    -- Record changes to book ratings in the RatingChanges table
-    IF @@ROWCOUNT > 0
-    BEGIN
-        INSERT INTO RatingChanges (BookID, ChangeDate, OldRating, NewRating)
-        SELECT D.BookID, GETDATE(), D.Rating AS OldRating, I.Rating AS NewRating
-        FROM inserted AS I
-        INNER JOIN deleted AS D ON I.BookID = D.BookID AND I.MeetingID = D.MeetingID
-        WHERE I.Rating <> D.Rating; -- Only log actual changes
-    END
-RETURN
-GO
-
--- Test the trigger
--- Update a rating and verify RatingChanges table
-UPDATE BookMeeting
-SET Rating = 4
-WHERE BookID = 1 AND MeetingID = 1;
-
-SELECT * FROM RatingChanges;
-GO
